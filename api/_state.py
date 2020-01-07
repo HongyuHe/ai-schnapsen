@@ -448,7 +448,7 @@ class State:
 		Sets the point count of the specified player to the specified points
 
 		:param player: An integer signifying the player id
-		:param player: An integer signifying the point count to player's points are set to
+		:param points: An integer signifying the point count to player's points are set to
 		"""
 
 		if player == 1:
@@ -461,7 +461,7 @@ class State:
 		Adds the specified points to the point count of the specified player
 
 		:param player: An integer signifying the player id
-		:param player: An integer signifying the points to be added to the point count of the player
+		:param points: An integer signifying the points to be added to the point count of the player
 		"""
 
 		if player == 1:
@@ -474,7 +474,7 @@ class State:
 		Adds the specified pending points to the pending point count of the specified player
 
 		:param player: An integer signifying the player id
-		:param player: An integer signifying the pending points to be added to the pending point count of the player
+		:param points: An integer signifying the pending points to be added to the pending point count of the player
 		"""
 		if player == 1:
 			self.__p1_pending_points += points
