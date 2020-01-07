@@ -124,13 +124,11 @@ own_points = state.get_points(me)
 opponents_points = state.get_points(opponent)
 ```
 
-### Get familiar with the State API
+### Get familiar with the `State` API
 
-Every state-related function you will use when building your bot can be found, fully documented, in the State class, located in api/_state.py. We *highly recommend* that you read through this class to understand the capabilities available to you when writing your bots.
+Every state-related function you will use when building your bot can be found, fully documented, in the State class, located in api/_state.py. We *highly recommend* that you read through this class to understand the available capabilities.
 
 Note that you only have access to public functions. Private functions, i.e. functions whose name starts with two underscores "__" are used for the internal implementation of the game and are abstracted away from the player.
-
-Reading the code itself in addition to the documentation can help you get acquainted with the internals of the game engine, however this is not obligatory in order to be able to complete the course.
 
 ## Contributions
 
