@@ -18,7 +18,7 @@ combination. We plot the results in a heat map
 import matplotlib as mpl
 mpl.use('Agg')
 from matplotlib import pyplot as plt
-from api import State, util
+from api import State, Deck, util
 
 import random
 
@@ -32,14 +32,55 @@ class Bot:
         self.__non_trump_move = non_trump_move
 
     def get_move(self, state):
+        moves_trump_suit = []
 
         if random.random() < self.__non_trump_move:
 
             # IMPLEMENT: Make the best non-trump move you can. Use the best_non_trump_card method written below.
-            pass
+
+            # bully bot
+            moves = state.moves()
+            chosen_move = moves[0]  # take the 1st available
+
+
+            #Get all trump suit moves available
+            for index, move in enumerate(moves):
+
+                if move[0] is not None and Deck.get_suit(move[0]) == state.get_trump_suit():
+                    moves_trump_suit.append(move)	# find all cards same suit
+
+            if len(moves_trump_suit) > 0:
+                chosen_move = moves_trump_suit[0] # choose the 1st trump-suit card
+                return chosen_move
+
+            # No trump suit moves available:
+
+            # # If the opponent has played a card
+            # if state.get_opponents_played_card() is not None:
+            #
+            #     moves_same_suit = []
+            #
+            #     # Get all moves of the same suit as the opponent's played card
+            #     for index, move in enumerate(moves):
+            #         if move[0] is not None and Deck.get_suit(move[0]) == Deck.get_suit(state.get_opponents_played_card()):
+            #             moves_same_suit.append(move)
+            #
+            #     if len(moves_same_suit) > 0:
+            #         chosen_move = moves_same_suit[0]
+            #         return chosen_move
+            #
+            # # Get move with highest rank available, of any suit
+            # for index, move in enumerate(moves):
+            #     if move[0] is not None and move[0] % 5 <= chosen_move[0] % 5:
+            #         chosen_move = move
+            #
+            # return chosen_move
 
         #IMPLEMENT: Make a random move (but exclude the best non-trump move from above)
-        pass
+        moves_none_trump = list(set(state.moves()) - set(moves_trump_suit))
+
+        # Return a random choice
+        return random.choice(moves_none_trump)
 
 
 def empty(n):

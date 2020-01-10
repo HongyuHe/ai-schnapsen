@@ -28,7 +28,7 @@ class Bot:
 		"""
 		# All legal moves
 		moves = state.moves()
-		chosen_move = moves[0]
+		chosen_move = moves[0]  # take the 1st available
 
 		moves_trump_suit = []
 
@@ -36,11 +36,13 @@ class Bot:
 		for index, move in enumerate(moves):
 
 			if move[0] is not None and Deck.get_suit(move[0]) == state.get_trump_suit():
-				moves_trump_suit.append(move)
+				moves_trump_suit.append(move)	# find all cards same suit
 
 		if len(moves_trump_suit) > 0:
-			chosen_move = moves_trump_suit[0]
+			chosen_move = moves_trump_suit[0] # choose the 1st same-suit card
 			return chosen_move
+
+# No trump suit moves available:
 
 		# If the opponent has played a card
 		if state.get_opponents_played_card() is not None:

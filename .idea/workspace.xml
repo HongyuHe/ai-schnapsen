@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="aa0aa029-360c-432d-961d-2e9e3831be5a" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1W6lhgdKHHabIdBcL1fccnfC0N0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/play.py" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunManager" selected="Python.experiment">
+    <configuration name="3.7" type="PythonConfigurationType" factoryName="Python">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/play.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="experiment" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/experiment.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.experiment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aa0aa029-360c-432d-961d-2e9e3831be5a" name="Default Changelist" comment="" />
+      <created>1578478046067</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1578478046067</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="419" y="179" width="1171" height="901" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578480138140">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="419" y="179" width="1171" height="901" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1578480138140" />
+    <state x="650" y="371" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog" timestamp="1578479789972">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="650" y="371" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1578479789972" />
+    <state x="669" y="211" key="FileChooserDialogImpl" timestamp="1578480134292">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="669" y="211" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1578480134292" />
+    <state width="1890" height="55" key="GridCell.Tab.0.bottom" timestamp="1578671906110">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1890" height="55" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1578671906110" />
+    <state width="1890" height="55" key="GridCell.Tab.0.center" timestamp="1578671906110">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1890" height="55" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1578671906110" />
+    <state width="1890" height="55" key="GridCell.Tab.0.left" timestamp="1578671906109">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1890" height="55" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1578671906109" />
+    <state width="1890" height="55" key="GridCell.Tab.0.right" timestamp="1578671906110">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1890" height="55" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1578671906110" />
+    <state x="325" y="87" width="1269" height="927" key="SettingsEditor" timestamp="1578604605830">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="325" y="87" width="1269" height="927" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1578604605830" />
+    <state x="555" y="315" key="com.intellij.ide.util.TipDialog" timestamp="1578478049825">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="555" y="315" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1578478049825" />
+    <state x="521" y="56" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1578618115677">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="521" y="56" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1578618115677" />
+    <state x="657" y="389" width="894" height="390" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1578604604771">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="657" y="389" width="894" height="390" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1578604604771" />
+    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1578658128594">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1578658128594" />
+  </component>
+</project>

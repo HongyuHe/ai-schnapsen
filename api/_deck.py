@@ -273,7 +273,7 @@ class Deck:
 
 		perspective = self.get_perspective()
 
-		trump_index = perspective.index("S")
+		trump_index = perspective.index("S") # "S": trump suit; "U": Unknown; "P1/2H": cards in 1/2 hand
 
 		unknowns = [index for index, card in enumerate(perspective) if card == "U"]
 
