@@ -4,7 +4,7 @@ from queue import PriorityQueue
 
 class Bot:
     __WIN_SCORE = 66
-    __NUM_BELIEF_STATES = 1
+    __NUM_BELIEF_STATES = 5
 
     __A_star_fringe = PriorityQueue()
 
@@ -28,18 +28,14 @@ class Bot:
                 self.__A_star_fringe = PriorityQueue()
             scores[i] /= self.__NUM_BELIEF_STATES
 
-        print(scores)
+#         print(scores)
         return available_moves[scores.index(max(scores))]
 
 
     def A_star_eval(self, me, depth, curr_state) -> float:  # using BFS for now
         # print(f"Turn: {curr_state.whose_turn()}, Me {me}")
         if curr_state.finished():
-            winner = curr_state.winner()[0]
-            win_points = curr_state.winner()[1]
-            pole = 1
-            if winner != me:
-                pole = -1
+            pole = -1 if curr_state.winner()[0] != me else 1
                 # print("lose")
                 # print("Winner:", curr_state.winner()[0], " Looser Me: ", me)
                 # print (curr_state.get_points(1), curr_state.get_points(util.other(1)))
@@ -55,7 +51,7 @@ class Bot:
                 # print("Diff: ", util.difference_points(curr_state, winner))
                 # return (curr_state.get_points(me) - curr_state.get_points(util.other(me)))
             # print(pole*(util.difference_points(curr_state, winner) + win_points))
-            return pole*(util.difference_points(curr_state, winner) + win_points)
+            return pole*self.heuristic(depth, curr_state)
 
         next_moves = curr_state.moves()
         if str(type(next_moves)) == "<class 'tuple'>":
@@ -99,6 +95,6 @@ class Bot:
 
         return curr_state.next(move)
 
-    def win_score_heuristic(self, player, depth, state) -> float:
-        return (util.difference_points(state, player))**2 * pow(depth, -1)
+    def heuristic(self, depth, curr_state) -> float:
+        return (util.difference_points(curr_state, curr_state.winner()[0]) + curr_state.winner()[1])*1.5 * depth
 
