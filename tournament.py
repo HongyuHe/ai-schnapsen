@@ -11,7 +11,7 @@ from api import State, util, engine
 import random, time, os.path, importlib, sys, traceback
 
 
-def tournament_load_player(name, classname='Bot', classdepth=1):
+def tournament_load_player(name, classname='Bot', classdepth=1, classheuristic="default"):
     # Accepts a string representing a bot and returns an instance of that bot. If the name is 'random'
     # this function will load the file ./bots/random/random.py and instantiate the class "Bot"
     # from that file.
@@ -34,8 +34,8 @@ def tournament_load_player(name, classname='Bot', classdepth=1):
     # Get a reference to the class
     try:
         cls = getattr(module, classname)
-        player = cls(depth=classdepth) # Instantiate the class
-        player.__init__()
+        player = cls(depth=classdepth, heuristic=classheuristic) # Instantiate the class
+        player.__init__(depth=classdepth, heuristic=classheuristic)
     except:
         print('ERROR: Could not load the class "Bot" {} from file {}.'.format(classname, path))
         traceback.print_exc()
@@ -49,7 +49,11 @@ def run_tournament(options):
     start_time = time.time()
 
     if options.players is None:
-        print('Must enter name of bot to test e.g. -p "rdeep"')
+        print('Must enter name of bot to test e.g. -p "features"')
+        return
+
+    if options.heuristic is None:
+        print('Must enter heuristic for bot under test to use e.g. -he "default"')
         return
 
     if options.depth is None:
@@ -63,7 +67,7 @@ def run_tournament(options):
             file.write('bot,depth,wins,loses\n')
 
     base_bot = util.load_player(options.base_bot)
-    test_bot = tournament_load_player(options.players, classdepth=options.depth)
+    test_bot = tournament_load_player(options.players, classdepth=options.depth, classheuristic=options.heuristic)
 
     wins = 0
     total_games = 0
@@ -108,6 +112,10 @@ if __name__ == "__main__":
                         dest="depth",
                         help="Maximum search depth allowed by the bot under test",
                         type=int)
+
+    parser.add_argument("-he", "--heuristic",
+                        dest="heuristic",
+                        help="The heuristic the bot under test should use")
 
     parser.add_argument("-gt", "--game-time",
                         dest="game_time",
