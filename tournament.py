@@ -8,53 +8,111 @@ python play.py -h
 
 from argparse import ArgumentParser
 from api import State, util, engine
-import random, time
+import random, time, os.path, importlib, sys, traceback
+
+
+def tournament_load_player(name, classname='Bot', classdepth=1):
+    # Accepts a string representing a bot and returns an instance of that bot. If the name is 'random'
+    # this function will load the file ./bots/random/random.py and instantiate the class "Bot"
+    # from that file.
+
+    # :param name: The name of a bot
+    # :return: An instantiated Bot
+
+    name = name.lower()
+    path = './bots/{}/{}.py'.format(name, name)
+
+    # Load the python file (making it a _module_)
+    try:
+        module = importlib.import_module('bots.{}.{}'.format(name, name))
+    except:
+        print('ERROR: Could not load the python file {}, for player with name {}. Are you sure your Bot has the right '
+              'filename in the right place? Does your python file have any syntax errors?'.format(path, name))
+        traceback.print_exc()
+        sys.exit(1)
+
+    # Get a reference to the class
+    try:
+        cls = getattr(module, classname)
+        player = cls(depth=classdepth) # Instantiate the class
+        player.__init__()
+    except:
+        print('ERROR: Could not load the class "Bot" {} from file {}.'.format(classname, path))
+        traceback.print_exc()
+        sys.exit()
+
+    return player
+
 
 def run_tournament(options):
 
-    botnames = options.players.split(",")
+    start_time = time.time()
 
-    bots = []
-    for botname in botnames:
-        bots.append(util.load_player(botname))
+    if options.players is None:
+        print('Must enter name of bot to test e.g. -p "rdeep"')
+        return
 
-    n = len(bots)
-    wins = [0] * len(bots)
-    matches = [(p1, p2) for p1 in range(n) for p2 in range(n) if p1 < p2]
+    if options.depth is None:
+        print("Must enter maximum depth e.g. -d 4")
+        return
 
-    totalgames = (n*n - n)/2 * options.repeats
-    playedgames = 0
+    log_file_name = "tournament_log.csv"
 
-    print('Playing {} games:'.format(int(totalgames)))
-    for a, b in matches:
-        for r in range(options.repeats):
+    if not os.path.exists(log_file_name):
+        with open(log_file_name, 'w') as file:
+            file.write('bot,depth,wins,loses\n')
 
-            if random.choice([True, False]):
-                p = [a, b]
-            else:
-                p = [b, a]
+    base_bot = util.load_player(options.base_bot)
+    test_bot = tournament_load_player(options.players, classdepth=options.depth)
 
-            # Generate a state with a random seed
-            state = State.generate(phase=int(options.phase))
+    wins = 0
+    total_games = 0
 
-            winner, score = engine.play(bots[p[0]], bots[p[1]], state, options.max_time*1000, verbose=False, fast=options.fast)
+    while (time.time() - start_time <= options.game_time):
 
-            if winner is not None:
-                winner = p[winner - 1]
-                wins[winner] += score
+        # Generate a state with a random seed
+        state = State.generate(phase=int(options.phase))
 
-            playedgames += 1
-            print('Played {} out of {:.0f} games ({:.0f}%): {} \r'.format(playedgames, totalgames, playedgames/float(totalgames) * 100, wins))
+        # The bot under test is player 2
+        winner, _ = engine.play(base_bot, test_bot, state, options.max_time*1000, verbose=False, fast=options.fast)
 
-    print('Results:')
-    for i in range(len(bots)):
-        print('    bot {}: {} points'.format(bots[i], wins[i]))
+        if winner is not None:
+            if winner is 2:
+                wins += 1
+            total_games += 1
+
+        # The bot under test is player 1
+        winner, _ = engine.play(test_bot, base_bot, state, options.max_time*1000, verbose=False, fast=options.fast)
+        
+        if winner is not None:
+            if winner is 1:
+                wins += 1
+            total_games += 1
+        
+    with open(log_file_name, 'a') as file:
+        # bot,depth,wins,loses
+        file.write('{},{},{},{}\n'.format(options.players, options.depth, wins, total_games - wins))
 
 
 if __name__ == "__main__":
 
     ## Parse the command line options
     parser = ArgumentParser()
+
+    parser.add_argument("-b", "--base-bot",
+                        dest="base_bot",
+                        help="The bot which will play against the bot to test",
+                        default="bully")
+
+    parser.add_argument("-d", "--search-depth",
+                        dest="depth",
+                        help="Maximum search depth allowed by the bot under test",
+                        type=int)
+
+    parser.add_argument("-gt", "--game-time",
+                        dest="game_time",
+                        help="Maximum run time allowed for the program in seconds (not exact, may finish early)",
+                        type=int, default=840)
 
     parser.add_argument("-s", "--starting-phase",
                         dest="phase",
@@ -63,8 +121,7 @@ if __name__ == "__main__":
 
     parser.add_argument("-p", "--players",
                         dest="players",
-                        help="Comma-separated list of player names (enclose with quotes).",
-                        default="rand,bully,rdeep")
+                        help="Comma-separated list of player names (enclose with quotes).")
 
     parser.add_argument("-r", "--repeats",
                         dest="repeats",
@@ -79,7 +136,8 @@ if __name__ == "__main__":
     parser.add_argument("-f", "--fast",
                         dest="fast",
                         action="store_true",
-                        help="This option forgoes the engine's check of whether a bot is able to make a decision in the allotted time, so only use this option if you are sure that your bot is stable.")
+                        help="This option forgoes the engine's check of whether a bot is able to make a decision in the allotted time, so only use this option if you are sure that your bot is stable.",
+                        default=True)
 
     options = parser.parse_args()
 
