@@ -4,7 +4,8 @@ import scipy.optimize as opt
 
 class Symbol(object):
     """
-    A class representing a single unit in the boolean SAT problem. This can either refer to an atomic boolean, or a
+    A class representing a single unit in the boolean SAT problem.
+    This can either refer to an atomic boolean, or a
     constraint based on integer variables
     """
     pass
@@ -404,7 +405,7 @@ class KB(object):
 
     def add_clause(self, *symbols):
         """
-        Adds a clause. A clause is a disjunction of atomic symbols or theiur negations. For instance:
+        Adds a clause. A clause is a disjunction of atomic symbols or their negations. For instance:
         ```
             A = Symbol('A')
             B = Symbol('B')

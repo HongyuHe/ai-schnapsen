@@ -15,6 +15,9 @@ kb.add_clause(~A, B)
 kb.add_clause(~B, C)
 kb.add_clause(B, ~C)
 
+# new
+kb.add_clause(~C)
+
 # Print all models of the knowledge base
 for model in kb.models():
     print(model)

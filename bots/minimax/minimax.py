@@ -35,6 +35,7 @@ class Bot:
         :param depth:
         :return: A tuple containing the value of this state, and the best move for the player currently to move
         """
+        # state.__signature = state.whose_turn()
 
         if state.finished():
             winner, points = state.winner()
@@ -54,6 +55,7 @@ class Bot:
         for move in moves:
 
             next_state = state.next(move)
+            # next_state2 = state.next(move)
 
             # IMPLEMENT: Add a recursive function call so that 'value' will contain the
             # minimax value of 'next_state'

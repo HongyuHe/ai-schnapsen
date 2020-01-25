@@ -555,7 +555,7 @@ class State:
 	def convert_to_json(self):
 		"""
 		Creates a JSON representation of the current state.
-		Written for the user inteface.
+		Written for the user interface.
 		"""
 
 		if self.__signature is not None:

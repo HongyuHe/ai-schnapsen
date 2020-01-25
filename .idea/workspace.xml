@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aa0aa029-360c-432d-961d-2e9e3831be5a" name="Default Changelist" comment="" />
+    <list default="true" id="aa0aa029-360c-432d-961d-2e9e3831be5a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/a*/.ipynb_checkpoints/a*-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/a*/a*.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/alphabeta/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/alphabeta/alphabeta.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/kbbot/kb.py" beforeDir="false" afterPath="$PROJECT_DIR$/bots/kbbot/kb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/kbbot/test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/bots/kbbot/test1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/minimax/minimax.py" beforeDir="false" afterPath="$PROJECT_DIR$/bots/minimax/minimax.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/ml/ml.py" beforeDir="false" afterPath="$PROJECT_DIR$/bots/ml/ml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/experiment.pdf" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +27,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1W6lhgdKHHabIdBcL1fccnfC0N0" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,8 +41,18 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/play.py" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bots/humanoid" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/bots/a*" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/bots/humanoid" />
+      <recent name="$PROJECT_DIR$/bots/kbbot" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.experiment">
     <configuration name="3.7" type="PythonConfigurationType" factoryName="Python">
@@ -112,22 +141,22 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="669" y="211" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1578480134292" />
-    <state width="1890" height="55" key="GridCell.Tab.0.bottom" timestamp="1578671906110">
+    <state width="1890" height="490" key="GridCell.Tab.0.bottom" timestamp="1579702540616">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1890" height="55" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1578671906110" />
-    <state width="1890" height="55" key="GridCell.Tab.0.center" timestamp="1578671906110">
+    <state width="1890" height="490" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1579702540616" />
+    <state width="1890" height="490" key="GridCell.Tab.0.center" timestamp="1579702540614">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1890" height="55" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1578671906110" />
-    <state width="1890" height="55" key="GridCell.Tab.0.left" timestamp="1578671906109">
+    <state width="1890" height="490" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1579702540614" />
+    <state width="1890" height="490" key="GridCell.Tab.0.left" timestamp="1579702540614">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1890" height="55" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1578671906109" />
-    <state width="1890" height="55" key="GridCell.Tab.0.right" timestamp="1578671906110">
+    <state width="1890" height="490" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1579702540614" />
+    <state width="1890" height="490" key="GridCell.Tab.0.right" timestamp="1579702540616">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1890" height="55" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1578671906110" />
+    <state width="1890" height="490" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1579702540616" />
     <state x="325" y="87" width="1269" height="927" key="SettingsEditor" timestamp="1578604605830">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -144,9 +173,9 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="657" y="389" width="894" height="390" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1578604604771" />
-    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1578658128594">
+    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1579844170011">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1578658128594" />
+    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1579844170011" />
   </component>
 </project>
