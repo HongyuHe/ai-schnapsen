@@ -13,25 +13,30 @@ class Bot:
         self.__DEPTH_LIMIT = _depth_limit
         self.__NUM_BELIEF_STATES = _num_beleif_states
 
+
     ########################## heuristics ###########################
 
 
     def action_cost(self, me, depth, state) -> float:
 
         def backward_cost():
-            return (state.get_points(util.other(me)) + depth) / self.__WIN_SCORE  # the opponent's score + depth
+            # return (state.get_points(util.other(me)) + depth) / self.__WIN_SCORE  # the opponent's score + depth
+            return ???
 
         def forward_cost():
-            return (self.__WIN_SCORE - state.get_points(me)) / self.__WIN_SCORE  # my score
+            # return (self.__WIN_SCORE - state.get_points(me)) / self.__WIN_SCORE  # my score
+            return ???
 
         return backward_cost() + forward_cost()
 
     def midway_eval(self, depth, me, curr_state) -> float:
-        return self.bottom_decision(depth, me, curr_state)
+        # return self.bottom_decision(depth, me, curr_state)
+        return ???
 
     def bottom_decision(self, me, depth, curr_state) -> float:
-        pole = -1 if curr_state.winner()[0] != me else 1
-        return pole * (util.difference_points(curr_state, curr_state.winner()[0]) + curr_state.winner()[1]) * 1.5 * depth
+        # pole = -1 if curr_state.winner()[0] != me else 1
+        # return pole * (util.difference_points(curr_state, curr_state.winner()[0]) + curr_state.winner()[1]) * 1.5 * depth
+        return ???
 
     ########################## heuristics ###########################
 
@@ -42,7 +47,7 @@ class Bot:
             return self.bottom_decision(depth, me, curr_state)
 
         if depth > self.__DEPTH_LIMIT:
-            return self.bottom_decision(depth, me, curr_state);
+            return self.midway_eval(depth, me, curr_state);
 
         next_moves = curr_state.moves()
 
