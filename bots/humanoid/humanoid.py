@@ -27,7 +27,8 @@ class Bot:
             # return (self.__WIN_SCORE - state.get_points(me)) / self.__WIN_SCORE  # my score
             return ???
 
-        return backward_cost() + forward_cost()
+        # return backward_cost() + forward_cost()
+        return ???
 
     def midway_eval(self, depth, me, curr_state) -> float:
         # return self.bottom_decision(depth, me, curr_state)
