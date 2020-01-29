@@ -38,8 +38,10 @@ class Bot:
 
         return potential_points / MAX_POSSIBLE_POTENTIAL_POINTS
 
+
     def heuristic_negative_trick_worth(self, depth, curr_state) -> float:
         return -self.heuristic_trick_worth(depth, curr_state)
+
 
     def heuristic_pending_points(self, depth, curr_state) -> float:
         MAX_POSSIBLE_PENDING_POINTS = 100
