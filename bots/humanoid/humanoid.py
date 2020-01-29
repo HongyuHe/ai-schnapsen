@@ -9,12 +9,51 @@ class Bot:
     __DEPTH_LIMIT = 10
     __NUM_BELIEF_STATES = 30 # LLN
 
-    __fringe = PriorityQueue()
+    __fringes = {            # fringes for both players
+        1: PriorityQueue(),
+        2: PriorityQueue()
+    }
 
 
-    def __init__(self, _num_beleif_states = 30, _depth_limit = 10):
+    def __init__(self, _num_belief_states = 30, _depth_limit = 10):
         self.__DEPTH_LIMIT = _depth_limit
-        self.__NUM_BELIEF_STATES = _num_beleif_states
+        self.__NUM_BELIEF_STATES = _num_belief_states
+
+
+    def heuristic_trick_worth(self, depth, curr_state) -> float:
+        MAX_POSSIBLE_POTENTIAL_POINTS = 11
+
+        potential_points = 0
+
+        played_card = curr_state.get_opponents_played_card()
+        if played_card is not None:
+            played_card = util.get_rank(played_card)
+            if played_card == 'J':
+                potential_points -= 2
+            elif played_card == 'Q':
+                potential_points -= 3
+            elif played_card == 'K':
+                potential_points -= 4
+            elif played_card == '10':
+                potential_points -= 10
+            elif played_card == 'A':
+                potential_points -= 11
+
+        return potential_points / MAX_POSSIBLE_POTENTIAL_POINTS
+
+
+    def heuristic_negative_trick_worth(self, depth, curr_state) -> float:
+        return -self.heuristic_trick_worth(depth, curr_state)
+
+
+    def heuristic_pending_points(self, depth, curr_state) -> float:
+        MAX_POSSIBLE_PENDING_POINTS = 100
+        return -curr_state.get_pending_points(self.__me) / MAX_POSSIBLE_PENDING_POINTS
+
+
+    def heuristic_opponent_pending_points(self, depth, curr_state) -> float:
+        MAX_POSSIBLE_PENDING_POINTS = 100
+        return -curr_state.get_pending_points(util.other(self.__me)) / MAX_POSSIBLE_PENDING_POINTS
 
 
     ########################## begin heuristics ###########################
@@ -37,7 +76,6 @@ class Bot:
         return trumpamount
 
     def action_cost(self, depth, curr_state) -> float:
-
         def backward_cost():
             return -random.random() if curr_state.whose_turn() == self.__me else random.random()
 
@@ -47,7 +85,7 @@ class Bot:
         return (backward_cost() + forward_cost()) / 2
 
     def midway_eval(self, depth, curr_state) -> float:
-        return -random.random() if curr_state.whose_turn() == self.__me else random.random()
+        return self.heuristic_negative_trick_worth(depth, curr_state)
 
     def bottom_decision(self, depth, curr_state) -> float:
         return -1.0 if curr_state.winner()[0] == self.__me else 1.0
@@ -56,6 +94,8 @@ class Bot:
 
 
     def mind_simulation(self, depth, curr_state) -> float:  # using dijkstra for now
+        player = curr_state.whose_turn()
+
         if curr_state.finished():
             return self.bottom_decision(depth, curr_state)
 
@@ -68,9 +108,9 @@ class Bot:
         for move in next_moves:
             next_state = curr_state.clone().next(move)
             cost = self.action_cost(depth + 1, next_state)
-            self.__fringe.put((cost, next_state.clone(), depth))
+            self.__fringes[player].put((cost, next_state.clone(), depth))
 
-        _, next_state, depth = self.__fringe.get()
+        _, next_state, depth = self.__fringes[player].get()
 
         return self.mind_simulation(depth + 1, next_state)
 
@@ -78,6 +118,8 @@ class Bot:
     def get_move(self, state) -> (int, int):
         if self.__me == None:
             self.__me = state.whose_turn()
+
+        self.__NUM_BELIEF_STATES = 0 if state.get_phase() == 2 else self.__NUM_BELIEF_STATES
 
         depth = 0
         available_moves = state.moves()
@@ -88,8 +130,9 @@ class Bot:
                 next_state = self.assume_next_state(move, state)
                 scores[i] += self.mind_simulation(depth + 1, next_state)
 
-                self.__fringe = PriorityQueue()
-            scores[i] /= self.__NUM_BELIEF_STATES
+                self.__fringes = { 1: PriorityQueue(), 2: PriorityQueue() }
+
+            scores[i] /= self.__NUM_BELIEF_STATES if self.__NUM_BELIEF_STATES != 0 else 1
 
         return available_moves[scores.index(min(scores))]
 
