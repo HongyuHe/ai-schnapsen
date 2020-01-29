@@ -19,6 +19,23 @@ class Bot:
 
     ########################## begin heuristics ###########################
 
+    def heuristic_difference_in_points(self, depth, curr_state) -> float:
+        return util.difference_points(state, curr_state.whose_turn())/187 #187 is the highest points difference ever reachable.
+
+    def heuristic_amount_trump_cards(self, depth, curr_state):
+        trumprange = range(15,20)
+        trumpamount = 0
+        if curr_state.get_trump_suit = "C":
+            trumprange = range(0,5)
+        else if curr_state.get_trump_suit = "D":
+            trumprange = range(5,10)
+        else if curr_state.get_trump_suit = 'H':
+            trumprange = range(10,15)
+        for move in curr_state.moves():
+            if move in trumprange:
+                trumpamount += 1
+        return trumpamount
+
     def action_cost(self, depth, curr_state) -> float:
 
         def backward_cost():
@@ -61,7 +78,7 @@ class Bot:
     def get_move(self, state) -> (int, int):
         if self.__me == None:
             self.__me = state.whose_turn()
-        
+
         depth = 0
         available_moves = state.moves()
         scores = [0.0] * len(available_moves)
