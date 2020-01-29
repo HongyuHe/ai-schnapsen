@@ -15,7 +15,6 @@ class Bot:
     def __init__(self, _num_beleif_states = 30, _depth_limit = 10):
         self.__DEPTH_LIMIT = _depth_limit
         self.__NUM_BELIEF_STATES = _num_beleif_states
-        self.__me = 1
 
 
     ########################## begin heuristics ###########################
@@ -54,7 +53,7 @@ class Bot:
             cost = self.action_cost(depth + 1, next_state)
             self.__fringe.put((cost, next_state.clone(), depth))
 
-        cost, next_state, depth = self.__fringe.get()
+        _, next_state, depth = self.__fringe.get()
 
         return self.mind_simulation(depth + 1, next_state)
 
