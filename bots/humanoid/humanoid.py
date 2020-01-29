@@ -19,7 +19,18 @@ class Bot:
         self.__DEPTH_LIMIT = _depth_limit
         self.__NUM_BELIEF_STATES = _num_belief_states
 
+    # midway_eval
+    def heuristic_opponents_winnings(self, depth, curr_state) -> float:
+        played_card = curr_state.get_opponents_played_card()
+        if played_card is not None:
+            played_card = util.get_rank(played_card)
+            if played_card == 'J' or played_card == 'Q' or played_card == 'K':
+                return 1.0
+            elif played_card == '10' or played_card == 'A':
+                return -1.0
+        return 0.0
 
+    # midway_eval
     def heuristic_trick_worth(self, depth, curr_state) -> float:
         MAX_POSSIBLE_POTENTIAL_POINTS = 11
 
@@ -41,25 +52,25 @@ class Bot:
 
         return potential_points / MAX_POSSIBLE_POTENTIAL_POINTS
 
-
+    # midway_eval
     def heuristic_negative_trick_worth(self, depth, curr_state) -> float:
         return -self.heuristic_trick_worth(depth, curr_state)
 
-
+    # midway_eval
     def heuristic_pending_points(self, depth, curr_state) -> float:
         MAX_POSSIBLE_PENDING_POINTS = 100
         return -curr_state.get_pending_points(self.__me) / MAX_POSSIBLE_PENDING_POINTS
 
-
+    # midway_eval
     def heuristic_opponent_pending_points(self, depth, curr_state) -> float:
         MAX_POSSIBLE_PENDING_POINTS = 100
         return -curr_state.get_pending_points(util.other(self.__me)) / MAX_POSSIBLE_PENDING_POINTS
 
-
+    # midway_eval
     def heuristic_difference_in_points(self, depth, curr_state) -> float:
-        return util.difference_points(curr_state, curr_state.whose_turn()) / 187 #187 is the highest points difference ever reachable.
+        return util.difference_points(curr_state, curr_state.whose_turn()) / 187 # 187 is the highest points difference ever reachable.
 
-
+    # midway_eval
     def heuristic_amount_trump_cards(self, depth, curr_state):
         trumprange = range(15,20)
         trumpamount = 0
@@ -79,10 +90,11 @@ class Bot:
 
     def action_cost(self, depth, curr_state) -> float:
         def backward_cost():
-            return -random.random() if curr_state.whose_turn() == self.__me else random.random()
+            return depth / self.__DEPTH_LIMIT
 
         def forward_cost():
-            return -random.random() if curr_state.whose_turn() == self.__me else random.random()
+            distance_from_goal = self.__WIN_SCORE - curr_state.get_points(self.__me)
+            return -((((distance_from_goal - 1) / (self.__WIN_SCORE - 1)) * 2 ) - 1)
 
         return (backward_cost() + forward_cost()) / 2
 
