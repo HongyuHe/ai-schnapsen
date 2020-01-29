@@ -12,15 +12,48 @@ class Bot:
     __fringe = PriorityQueue()
 
 
-    def __init__(self, _num_beleif_states = 30, _depth_limit = 10):
+    def __init__(self, _num_belief_states = 30, _depth_limit = 10):
         self.__DEPTH_LIMIT = _depth_limit
-        self.__NUM_BELIEF_STATES = _num_beleif_states
+        self.__NUM_BELIEF_STATES = _num_belief_states
+
+
+    def heuristic_trick_worth(self, depth, curr_state) -> float:
+        MAX_POSSIBLE_POTENTIAL_POINTS = 11
+
+        potential_points = 0
+
+        played_card = curr_state.get_opponents_played_card()
+        if played_card is not None:
+            played_card = util.get_rank(played_card)
+            if played_card == 'J':
+                potential_points -= 2
+            elif played_card == 'Q':
+                potential_points -= 3
+            elif played_card == 'K':
+                potential_points -= 4
+            elif played_card == '10':
+                potential_points -= 10
+            elif played_card == 'A':
+                potential_points -= 11
+
+        return potential_points / MAX_POSSIBLE_POTENTIAL_POINTS
+
+    def heuristic_negative_trick_worth(self, depth, curr_state) -> float:
+        return -self.heuristic_trick_worth(depth, curr_state)
+
+    def heuristic_pending_points(self, depth, curr_state) -> float:
+        MAX_POSSIBLE_PENDING_POINTS = 100
+        return -curr_state.get_pending_points(self.__me) / MAX_POSSIBLE_PENDING_POINTS
+
+
+    def heuristic_opponent_pending_points(self, depth, curr_state) -> float:
+        MAX_POSSIBLE_PENDING_POINTS = 100
+        return -curr_state.get_pending_points(util.other(self.__me)) / MAX_POSSIBLE_PENDING_POINTS
 
 
     ########################## begin heuristics ###########################
 
     def action_cost(self, depth, curr_state) -> float:
-
         def backward_cost():
             return -random.random() if curr_state.whose_turn() == self.__me else random.random()
 
@@ -30,7 +63,7 @@ class Bot:
         return (backward_cost() + forward_cost()) / 2
 
     def midway_eval(self, depth, curr_state) -> float:
-        return -random.random() if curr_state.whose_turn() == self.__me else random.random()
+        return self.heuristic_negative_trick_worth(depth, curr_state)
 
     def bottom_decision(self, depth, curr_state) -> float:
         return -1.0 if curr_state.winner()[0] == self.__me else 1.0
