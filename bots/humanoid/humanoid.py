@@ -56,24 +56,26 @@ class Bot:
         return -curr_state.get_pending_points(util.other(self.__me)) / MAX_POSSIBLE_PENDING_POINTS
 
 
-    ########################## begin heuristics ###########################
-
     def heuristic_difference_in_points(self, depth, curr_state) -> float:
-        return util.difference_points(state, curr_state.whose_turn())/187 #187 is the highest points difference ever reachable.
+        return util.difference_points(curr_state, curr_state.whose_turn()) / 187 #187 is the highest points difference ever reachable.
+
 
     def heuristic_amount_trump_cards(self, depth, curr_state):
         trumprange = range(15,20)
         trumpamount = 0
-        if curr_state.get_trump_suit = "C":
+        if curr_state.get_trump_suit == "C":
             trumprange = range(0,5)
-        else if curr_state.get_trump_suit = "D":
+        elif curr_state.get_trump_suit == "D":
             trumprange = range(5,10)
-        else if curr_state.get_trump_suit = 'H':
+        elif curr_state.get_trump_suit == 'H':
             trumprange = range(10,15)
         for move in curr_state.moves():
             if move in trumprange:
                 trumpamount += 1
         return trumpamount
+
+
+    ########################## begin heuristics ###########################
 
     def action_cost(self, depth, curr_state) -> float:
         def backward_cost():
