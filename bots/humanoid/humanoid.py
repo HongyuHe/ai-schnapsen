@@ -81,10 +81,26 @@ class Bot:
         elif curr_state.get_trump_suit == 'H':
             trumprange = range(10,15)
         for move in curr_state.moves():
-            if move in trumprange:
+            if move[0] in trumprange:
                 trumpamount += 1
         return trumpamount
 
+    def heuristic_hand_strength(self, depth, curr_state):
+        trumprange = range(15,20)
+        trumpamount = 0
+        handstrength = 0
+        if curr_state.get_trump_suit == "C":
+            trumprange = range(0,5)
+        elif curr_state.get_trump_suit == "D":
+            trumprange = range(5,10)
+        elif curr_state.get_trump_suit == 'H':
+            trumprange = range(10,15)
+        for move in curr_state.moves():
+            handstrength = 3 - ((move[0] % 5) - 2)
+            if move[0] in trumprange:
+                trumpamount += 1
+        handstrength += 5 * trumpamount
+        return handstrength
 
     ########################## begin heuristics ###########################
 
