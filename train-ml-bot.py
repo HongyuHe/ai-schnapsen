@@ -19,10 +19,12 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.externals import joblib
 
 from bots.rand import rand
-# from bots.rdeep import rdeep
+from bots.rdeep import rdeep
 
 from bots.ml.ml import features
 
+# 10 million rounds
+# def create_dataset(path, player=rdeep.Bot(), games=10000000, phase=1):
 def create_dataset(path, player=rand.Bot(), games=2000, phase=1):
 
     data = []
@@ -86,12 +88,12 @@ parser = ArgumentParser()
 parser.add_argument("-d", "--dset-path",
                     dest="dset_path",
                     help="Optional dataset path",
-                    default="dataset.pkl")
+                    default="dataset-10k.pkl")
 
 parser.add_argument("-m", "--model-path",
                     dest="model_path",
                     help="Optional model path. Note that this path starts in bots/ml/ instead of the base folder, like dset_path above.",
-                    default="model.pkl")
+                    default="model-10k.pkl")
 
 parser.add_argument("-o", "--overwrite",
                     dest="overwrite",
@@ -107,7 +109,7 @@ parser.add_argument("--no-train",
 options = parser.parse_args()
 
 if options.overwrite or not os.path.isfile(options.dset_path):
-    create_dataset(options.dset_path, player=rand.Bot(), games=10000)
+    create_dataset(options.dset_path, player=rdeep.Bot(), games=10000)
 
 if options.train:
 
