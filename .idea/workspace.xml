@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa0aa029-360c-432d-961d-2e9e3831be5a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.ipynb_checkpoints/train-ml-bot-checkpoint.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bots/humanoid/.ipynb_checkpoints/humanoid-checkpoint.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bots/ml/model-10k.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dataset-10k.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bots/ml/.ipynb_checkpoints/__init__-checkpoint.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bots/ml/.ipynb_checkpoints/ml-checkpoint.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bots/ml/model-100k.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/humanoid/.ipynb_checkpoints/humanoid-checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/bots/humanoid/.ipynb_checkpoints/humanoid-checkpoint.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bots/humanoid/humanoid.py" beforeDir="false" afterPath="$PROJECT_DIR$/bots/humanoid/humanoid.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bots/ml/ml.py" beforeDir="false" afterPath="$PROJECT_DIR$/bots/ml/ml.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train-ml-bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/train-ml-bot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

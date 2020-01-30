@@ -15,7 +15,7 @@ class Bot:
     }
 
 
-    def __init__(self, _num_beleif_states=3, _depth_limit=3):
+    def __init__(self, _num_beleif_states=20, _depth_limit=20):
         self.__DEPTH_LIMIT = _depth_limit
         self.__NUM_BELIEF_STATES = _num_beleif_states
 
@@ -60,7 +60,7 @@ class Bot:
 
             scores[i] /= self.__NUM_BELIEF_STATES if self.__NUM_BELIEF_STATES != 0 else 1
 
-        print(scores)
+#         print(scores)
         return available_moves[scores.index(max(scores))]
 
     def look_ahead(self, depth, curr_state) -> float:  # using dijkstra for now
@@ -86,7 +86,7 @@ class Bot:
                 cost = self.action_cost(player, depth + 1, curr_state.clone().next(move))
                 self.__fringes[player].put((cost, [float('-inf') if v is None else v for v in move]))
 
-        # self.show_fringes()
+#         self.show_fringes()
         _, choice = self.__fringes[player].get()
 
         return self.look_ahead(depth + 1, curr_state.next(choice))
