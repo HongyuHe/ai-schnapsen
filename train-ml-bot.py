@@ -88,12 +88,12 @@ parser = ArgumentParser()
 parser.add_argument("-d", "--dset-path",
                     dest="dset_path",
                     help="Optional dataset path",
-                    default="dataset-10k.pkl")
+                    default="dataset-700k.pkl")
 
 parser.add_argument("-m", "--model-path",
                     dest="model_path",
                     help="Optional model path. Note that this path starts in bots/ml/ instead of the base folder, like dset_path above.",
-                    default="model-10k.pkl")
+                    default="model-700k.pkl")
 
 parser.add_argument("-o", "--overwrite",
                     dest="overwrite",
@@ -109,7 +109,7 @@ parser.add_argument("--no-train",
 options = parser.parse_args()
 
 if options.overwrite or not os.path.isfile(options.dset_path):
-    create_dataset(options.dset_path, player=rdeep.Bot(), games=10000)
+    create_dataset(options.dset_path, player=rdeep.Bot(), games=700000)
 
 if options.train:
 
