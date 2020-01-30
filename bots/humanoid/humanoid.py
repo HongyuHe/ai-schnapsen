@@ -6,8 +6,8 @@ from sklearn import preprocessing
 class Bot:
     __me = None
     __WIN_SCORE = 66
-    __DEPTH_LIMIT = 10
-    __NUM_BELIEF_STATES = 1
+    __DEPTH_LIMIT = 3
+    __NUM_BELIEF_STATES = 30 # LLN
 
     __fringes = {               # fringes for both players
         1: PriorityQueue(),
@@ -15,7 +15,11 @@ class Bot:
     }
 
 
+<<<<<<< HEAD
     def __init__(self, _num_beleif_states=20, _depth_limit=20):
+=======
+    def __init__(self, _num_beleif_states = 30, _depth_limit = 10):
+>>>>>>> a70c186fceb40670e16ae17cd6e1bb56e80b8be6
         self.__DEPTH_LIMIT = _depth_limit
         self.__NUM_BELIEF_STATES = _num_beleif_states
 
