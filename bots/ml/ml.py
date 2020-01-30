@@ -40,50 +40,6 @@ class Bot:
         :param state:
         :return: val, move: the value of the state, and the best move.
         """
-        # print("hey there!")
-
-        # if state.finished():
-        #     return self.heuristic(state), state.get_prev_trick()
-        #     # winner, points = state.winner()
-        #     # return (points, None) if winner == 1 else (-points, None)
-        #
-        # # if depth == self.__max_depth:
-        # #     return heuristic(state)
-        #
-        # # state = state.make_assumption() if state.get_phase() == 1 else state
-        # if state.get_phase() == 1:
-        #     curr_state = state.make_assumption()
-        #     # moves = curr_state.moves()
-        # else:
-        #     curr_state = state
-        #
-        # moves = curr_state.moves()
-        #
-        # if self.__randomize:
-        #     random.shuffle(moves)
-        #
-        # best_value = float('-inf') if maximizing(curr_state) else float('inf')
-        # best_move = None
-        #
-        # for move in moves:
-        #
-        #     next_state = curr_state.next(move)
-        #     # next_state2 = state.next(move)
-        #
-        #     # IMPLEMENT: Add a recursive function call so that 'value' will contain the
-        #     # minimax value of 'next_state'
-        #     value = self.value(next_state.clone())[0]
-        #
-        #     if maximizing(curr_state):
-        #         if value > best_value:
-        #             best_value = value
-        #             best_move = move
-        #     else:
-        #         if value < best_value:
-        #             best_value = value
-        #             best_move = move
-        #
-        # return best_value, best_move
 
         best_value = float('-inf') if maximizing(state) else float('inf')
         best_move = None
@@ -117,7 +73,7 @@ class Bot:
 
         # Convert the state to a feature vector
         feature_vector = [features(state)]
-        # print(feature_vector)
+        print(feature_vector)
 
         # These are the classes: ('won', 'lost')
         classes = list(self.__model.classes_)

@@ -16,37 +16,38 @@ class Bot:
         2: PriorityQueue()
     }
 
-    def __init__(self, _num_beleif_states=2, _depth_limit=3):
+    def __init__(self, _num_beleif_states=3, _depth_limit=3):
         self.__DEPTH_LIMIT = _depth_limit
         self.__NUM_BELIEF_STATES = _num_beleif_states
 
     ########################## heuristics ###########################
-    #
-    # 1. debug feature extraction (already has google doc)
-    # 2. explain why we can win
-    # 3. linearly combination.
 
-    def action_cost(self, player, depth, state) -> float:
+    def action_cost(self, player, depth, curr_state) -> float:
         def backward_cost():
-            return (state.get_points(util.other(player))) / self.__WIN_SCORE  # the opponent's score + depth
+            eval_vec = [self.heuristic_1a(player, depth, curr_state)]
+            return self.heuristics_eval(eval_vec)
 
         def forward_cost():
-            return (self.__WIN_SCORE - state.get_points(player)) / self.__WIN_SCORE  # my score --> underestimate, can be negative
+            eval_vec = [self.heuristic_2a(player, depth, curr_state)]
+            return self.heuristics_eval(eval_vec)
 
-        if self.__WIN_SCORE <= state.get_points(util.other(player)):
+        if self.__WIN_SCORE <= curr_state.get_points(util.other(player)):
             return -1
-        elif self.__WIN_SCORE <= state.get_points(player):
+        elif self.__WIN_SCORE <= curr_state.get_points(player):
             return 1
 
         return (backward_cost() + forward_cost()) / 2
 
     def midway_eval(self, player, depth, curr_state) -> float:  # should be always < positive bottom decision
-        return self.bottom_decision(depth, player, curr_state)
+        eval_vec = [self.heuristic_3a(player, depth, curr_state)]
+        return self.heuristics_eval(eval_vec)
 
     def bottom_decision(self, player, depth, curr_state) -> float:
-        return util.difference_points(curr_state, self.__me) / self.__WIN_SCORE
+        eval_vec = [self.heuristic_4a(player, depth, curr_state)]
+        return self.heuristics_eval(eval_vec)
 
-    ########################## heuristics ###########################
+
+    ########################## api ###########################
 
     def get_move(self, state) -> (int, int):
         self.__me = state.whose_turn()
@@ -103,9 +104,13 @@ class Bot:
     ########################## heuristics estimations ##############################
 
     def heuristic_1a(self, player: int, depth: int, curr_state: State) -> float:
+        if (curr_state.get_points(util.other(player))+curr_state.get_points(player)) == 0:
+            return 0
         return curr_state.get_points(util.other(player)) / (curr_state.get_points(util.other(player))+curr_state.get_points(player))
 
     def heuristic_1b(self, player: int, depth: int, curr_state: State) -> float:
+        if (curr_state.get_pending_points(util.other(player))+curr_state.get_pending_points(player)) == 0:
+            return 0
         return curr_state.get_pending_points(util.other(player)) / (curr_state.get_pending_points(util.other(player))+curr_state.get_pending_points(player))
 
     def heuristic_2a(self, player: int, depth: int, curr_state: State) -> float:
@@ -185,10 +190,12 @@ class Bot:
         return curr_state.next(move)
 
     def heuristics_eval(self, eval_vector):
-        def linear_normalization(self, eval_vector):
+        def linear_normalization():
+            if max(eval_vector) == 0:
+                return eval_vector
             return [float(i)/max(eval_vector) for i in eval_vector]
 
-        return sum(linear_normalization(eval_vector)) / len(eval_vector)
+        return sum(linear_normalization()) / len(eval_vector)
 
     def show_fringes(self):
         for player, fringe in self.__fringes.items():
