@@ -12,7 +12,7 @@ from sklearn.externals import joblib
 
 # Path of the model we will use. If you make a model
 # with a different name, point this line to its path.
-DEFAULT_MODEL = os.path.dirname(os.path.realpath(__file__)) + '/model.pkl'
+DEFAULT_MODEL = os.path.dirname(os.path.realpath(__file__)) + '/model-10k.pkl'
 
 class Bot:
 
@@ -73,7 +73,7 @@ class Bot:
 
         # Convert the state to a feature vector
         feature_vector = [features(state)]
-        print(feature_vector)
+        # print(feature_vector)
 
         # These are the classes: ('won', 'lost')
         classes = list(self.__model.classes_)
